@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TeacherAvalibities</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="empty"></string>
+</resources>
