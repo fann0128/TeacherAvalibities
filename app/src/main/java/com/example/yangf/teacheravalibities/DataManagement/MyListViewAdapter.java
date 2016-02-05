@@ -3,6 +3,7 @@ package com.example.yangf.teacheravalibities.DataManagement;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,8 +95,17 @@ public class MyListViewAdapter extends BaseAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 //do something
-                Toast toast = Toast.makeText(context,"you clicked Email",Toast.LENGTH_LONG);
-                toast.show();
+
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{list.get(position).getEmail()});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Office Hour");
+                i.putExtra(Intent.EXTRA_TEXT   , "");
+                try {
+                    context.startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(context, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btnFav.setOnClickListener(new View.OnClickListener() {
